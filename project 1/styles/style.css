@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    height: 60px;
+    background: #bfe3ef;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
