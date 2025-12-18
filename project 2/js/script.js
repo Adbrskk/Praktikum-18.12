@@ -13,7 +13,7 @@ class Notification {
         
         document.getElementById('notifications').append(div);
 
-        setTimeout(() => div.remove(), 3000);
+        setTimeout(() => div.remove(), 5000);
     }
 }
 
@@ -50,7 +50,6 @@ class Order {
         ).render();
     }
 }
-
 
 const form = document.getElementById('orderForm');
 const actions = document.getElementById('orderActions');
