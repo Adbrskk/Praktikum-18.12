@@ -8,21 +8,20 @@
 </head>
 <body>
 
-<div class="container">
-  <h2>Создание заказа</h2>
-
+<div class="form-container">
   <form id="orderForm">
-    <input type="text" placeholder="Имя" required />
-    <input type="text" placeholder="Адрес" required />
-    <input type="text" placeholder="Товар" required />
-    <button type="submit">Создать</button>
+    <h2>Создать заказ</h2>
+    <input type="text" placeholder="Адрес" required>
+    <input type="text" placeholder="Цена" required>
+    <input type="text" placeholder="Получатель" required>
+    <button type="submit">Создать заказ</button>
   </form>
+</div>
 
-  <div id="orderActions" class="hidden">
-    <button data-status="paid">Заказ оплачен</button>
-    <button data-status="sent">Заказ отправлен</button>
-    <button data-status="received">Заказ получен</button>
-  </div>
+<div class="order-status" id="orderStatus">
+  <button data-action="paid">Заказ оплачен</button>
+  <button data-action="sent">Заказ отправлен</button>
+  <button data-action="received">Заказ получен</button>
 </div>
 
 <div id="notifications"></div>

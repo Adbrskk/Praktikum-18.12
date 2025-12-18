@@ -1,68 +1,79 @@
+const orderForm = document.getElementById('orderForm');
+const orderStatus = document.getElementById('orderStatus');
+const notifications = document.getElementById('notifications');
+
 class Notification {
-    constructor(title, content, type = 'success') {
-        this.title = title;
-        this.content = content;
-        this.type = type;
-        this.date = new Date().toLocaleTimeString();
-    }
+  constructor(title, text, type) {
+    this.title = title;
+    this.text = text;
+    this.type = type;
+  }
 
-    render() {
-        const div = document.createElement('div');
-        div.className = `notification ${this.type}`;
-        div.innerHTML = `<strong>${this.title}</strong><br>${this.content}`;
-        
-        document.getElementById('notifications').append(div);
+  show() {
+    const toast = document.createElement('div');
+    toast.className = `toast ${this.type}`;
 
-        setTimeout(() => div.remove(), 5000);
-    }
+    toast.innerHTML = `
+      <div class="icon">!</div>
+      <div class="toast-content">
+        <strong>${this.title}</strong><br>
+        ${this.text}
+      </div>
+      <div class="toast-close">×</div>
+    `;
+
+    toast.querySelector('.toast-close').onclick = () => toast.remove();
+    notifications.appendChild(toast);
+
+    setTimeout(() => toast.remove(), 5000);
+  }
 }
 
 class Order {
-    create() {
-        new Notification(
-            'Заказ создан',
-            'Ожидайте дальнейшей информации',
-            'success'
-        ).render();
-    }
+  create() {
+    new Notification(
+      'Заказ создан',
+      'Ожидайте оплаты',
+      'success'
+    ).show();
 
-    paid() {
-        new Notification(
-            'Заказ оплачен',
-            'Ожидайте отправки',
-            'warning'
-        ).render();
-    }
+    orderStatus.style.display = 'flex';
+  }
 
-    sent() {
-        new Notification(
-            'Заказ отправлен',
-            'Ожидайте курьера',
-            'warning'
-        ).render();
-    }
+  paid() {
+    new Notification(
+      'Заказ оплачен',
+      'Готовим к отправке',
+      'warning'
+    ).show();
+  }
 
-    received() {
-        new Notification(
-            'Заказ получен',
-            'Ждём вас снова!',
-            'success'
-        ).render();
-    }
+  sent() {
+    new Notification(
+      'Заказ отправлен',
+      'Курьер в пути',
+      'warning'
+    ).show();
+  }
+
+  received() {
+    new Notification(
+      'Заказ получен',
+      'Спасибо за покупку!',
+      'success'
+    ).show();
+  }
 }
 
-const form = document.getElementById('orderForm');
-const actions = document.getElementById('orderActions');
 const order = new Order();
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    order.create();
-    actions.classList.remove('hidden');
+orderForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  order.create();
 });
 
-actions.addEventListener('click', (e) => {
-    if (e.target.dataset.status === 'paid') order.paid();
-    if (e.target.dataset.status === 'sent') order.sent();
-    if (e.target.dataset.status === 'received') order.received();
+orderStatus.addEventListener('click', (e) => {
+  const action = e.target.dataset.action;
+  if (!action) return;
+  order[action]();
 });
