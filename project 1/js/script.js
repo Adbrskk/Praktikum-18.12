@@ -3,11 +3,17 @@ const overlay = document.getElementById("overlay");
 const openBtn = document.getElementById("openMenu");
 const closeBtn = document.getElementById("closeMenu");
 
-function toggleMenu() {
-    menu.classList.toggle("active");
-    overlay.classList.toggle("active");
+function openMenu() {
+    menu.classList.add("active");
+    overlay.classList.add("active");
 }
 
-openBtn.onclick = toggleMenu;
-closeBtn.onclick = toggleMenu;
-overlay.onclick = toggleMenu;
+function closeMenu() {
+    menu.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
+openBtn.onclick = openMenu;
+closeBtn.onclick = closeMenu;
+
+overlay.onclick = closeMenu;
