@@ -14,7 +14,7 @@ class Notification {
     toast.className = `toast ${this.type}`;
 
     toast.innerHTML = `
-      <div class="icon">!</div>
+      <div class="icon">✓</div>
       <div class="toast-content">
         <strong>${this.title}</strong><br>
         ${this.text}
