@@ -13,3 +13,60 @@
     padding: 0 15px;
 }
 
+.burger {
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 5;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100vh;
+    background: #ffc0cb;
+    padding: 30px;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.menu.active {
+    left: 0;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 2px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu-item {
+    background: #ffe0c2;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
